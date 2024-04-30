@@ -3,20 +3,10 @@ import streamlit as st
 import sys
 from file_process import combine_files, generate_file
 from embed_docs import load_faiss_index
-from llm import get_response_from_query
+from llm import get_response_from_query2
 from display import display_search_results, display_newline, display_download_buttons
-import atexit
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-def close_app():
-    print("Closing the Streamlit app...")
-    st.stop()
-    os._exit(0)
-
-def on_browser_close():
-    print("Browser tab closed. Shutting down Streamlit...")
-    st.stop()
 
 def update_index():
     file_path = combine_files(st.session_state.uploaded_files)
@@ -35,12 +25,6 @@ def main():
     page = st.sidebar.radio("Mode", ["Search", "Context"])
 
     uploaded_files = st.sidebar.file_uploader("_", accept_multiple_files=True, key="file_uploader")
-
-    st.sidebar.markdown("---")
-    close_button = st.sidebar.button("Exit")
-
-    if close_button:
-        close_app()
 
     if uploaded_files:
         st.session_state.uploaded_files = uploaded_files
@@ -93,7 +77,7 @@ def main():
 
                         if queries[i].strip():
                             msg_holder.warning(f"Searching: {queries[i]}")
-                            response, docs_page_content = get_response_from_query(db, queries[i])
+                            response, docs_page_content = get_response_from_query2(db, queries[i])
 
                             if response:
                                 search_results[queries[i]] = (response, docs_page_content)
@@ -158,4 +142,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    atexit.register(on_browser_close)
