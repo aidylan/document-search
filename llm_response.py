@@ -26,14 +26,18 @@ def get_response_from_query(db, query, k=3):
         - Do NOT add useless comments at the end such as: "I hope this response helped you / I hope I answered your question / if you have more questions..."
         - Neatly structure your response using Newline, bold text, and bullet points if necessary.
         """
-        print(prompt_temp)
 
         response = ""
         for event in replicate.stream(
-            "meta/meta-llama-3-8b-instruct",
+            "meta/meta-llama-3-70b-instruct",
             input={
                 "prompt": prompt_temp,
-                "max_tokens": 8000
+                "max_tokens": 1000,
+                "temperature": 0.5,
+                "top_p": 0.9,
+                "top_k": 50,
+                "presence_penalty": 1.15,
+                "frequency_penalty": 0.2,
             },
         ):
             response += str(event)
@@ -79,5 +83,4 @@ def get_response_from_query_local(db, query, k=3):
         st.error(f"Error processing query: {query}")
         st.exception(e)
         return None, None
-
 """
