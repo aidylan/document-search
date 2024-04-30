@@ -3,7 +3,6 @@ import re
 import tempfile
 import subprocess
 import streamlit as st
-import sys
 from langchain_community.document_loaders import PyMuPDFLoader, Docx2txtLoader, CSVLoader
 
 def combine_files(uploaded_files):

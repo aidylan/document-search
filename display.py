@@ -1,5 +1,4 @@
 import streamlit as st
-from file_process import generate_file
 
 @st.cache_data
 def display_result(search_results, pdf_files, context = False):

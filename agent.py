@@ -3,7 +3,7 @@ import streamlit as st
 import sys
 from file_process import combine_files, generate_file
 from embed_docs import load_faiss_index
-from llm_response import get_response_from_query2
+from llm_response import get_response_from_query
 from display import display_search_results, display_newline, display_download_buttons
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -77,7 +77,7 @@ def main():
 
                         if queries[i].strip():
                             msg_holder.warning(f"Searching: {queries[i]}")
-                            response, docs_page_content = get_response_from_query2(db, queries[i])
+                            response, docs_page_content = get_response_from_query(db, queries[i])
 
                             if response:
                                 search_results[queries[i]] = (response, docs_page_content)
