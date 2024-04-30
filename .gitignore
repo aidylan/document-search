@@ -1,5 +1,7 @@
 .DS_Store
 mdpdf.log
+.all_files.txt
 __pycache__/
 Z_Records/
+
 

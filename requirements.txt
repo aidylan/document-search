@@ -5,3 +5,4 @@ faiss-cpu
 pymupdf
 python-docx
 mdpdf
+sentence-transformers
