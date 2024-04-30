@@ -54,7 +54,7 @@ def main():
 
         if st.session_state.uploaded_files:
             msg_holder.empty()
-            query = st.text_area("Enter your request/question (one per line):")  
+            query = st.text_area("Enter your request/question (one per line):", max_chars = 1000)  
             search_button = st.button("Search")
 
             if search_button:
