@@ -1,8 +1,9 @@
 streamlit
-langchain_community
 langchain
+langchain_community
 faiss-cpu
 pymupdf
 python-docx
 mdpdf
 sentence-transformers
+replicate
