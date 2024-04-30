@@ -23,7 +23,7 @@ def load_faiss_index(file_path):
 def get_document_embed_db(file_path, _embeddings) -> FAISS:
     try:
         
-        splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50, length_function = len)
+        splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=10, length_function = len)
         file_loader = TextLoader(file_path)
         document = file_loader.load()
         docs = splitter.split_documents(document)
