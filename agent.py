@@ -3,7 +3,7 @@ import streamlit as st
 import sys
 from file_process import combine_files, generate_file
 from embed_docs import load_faiss_index
-from llm import get_response_from_query2
+from llm_response import get_response_from_query2
 from display import display_search_results, display_newline, display_download_buttons
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
