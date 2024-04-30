@@ -11,6 +11,7 @@ def display_result(search_results, pdf_files, context = False):
     except IndexError as e:
         print(f"Error: {str(e)}")
 
+@st.cache_data
 def display_search_results(i, results, context = False):
     query = results[0]
     result, result_context = results[1]

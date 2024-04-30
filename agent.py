@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import sys
 from file_process import combine_files, generate_file
-from embed_docs import load_faiss_index
+from embed_docs import load_faiss_index, get_embedding_model
 from llm_response import get_response_from_query
 from display import display_search_results, display_newline, display_download_buttons
 
@@ -10,7 +10,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 def update_index():
     file_path = combine_files(st.session_state.uploaded_files)
-    db = load_faiss_index(file_path)
+    embedding_model = get_embedding_model()
+    db = load_faiss_index(file_path, embedding_model)
     st.session_state.db = db
 
 def main():
@@ -90,7 +91,7 @@ def main():
                     if len(queries)==len(st.session_state.search_results) == len(st.session_state.export_pdf_files):
                         print("\n**ALL QUERIES PROCESSED - RESULTS AND PDF FILES GENERATED**\n")
                     else :
-                        msg_holder.warning("Caution: Number of requests, results, pdf files not equal.")
+                        #msg_holder.warning("Caution: Number of requests, results, pdf files not equal.")
                         print("\n**Caution: Number of queries, results, pdf files not equal.\n")
                         print("Queries:", len(queries), 
                               "Results:", len(st.session_state.search_results), 
